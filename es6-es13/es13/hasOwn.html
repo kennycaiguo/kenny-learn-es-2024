@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es13特性-hasOwn</title>
+</head>
+<body>
+    <script>
+        let obj = {
+            name:"kenny",
+            age:100
+        }
+        //以前的写法
+      console.log(Object.prototype.hasOwnProperty.call(obj, 'name')); //true
+      //现在的写法
+      console.log(Object.hasOwn(obj,"age"));//true
+    </script>
+</body>
+</html>

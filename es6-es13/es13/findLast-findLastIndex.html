@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es13特性-findLast-findLastIndex</title>
+</head>
+<body>
+    <script>
+        let arr = [100,200,300,400,500,600]
+        let res1=arr.find(item=>item > 300) 
+        console.log(res1);//400
+        let res2=arr.findIndex(item=>item > 300)
+        console.log(res2);//3
+        //从后往前找，索引的计数还是从左往右
+        let res3=arr.findLast(item=>item > 300)
+        console.log(res3); //600
+        let res4=arr.findLastIndex(item=>item > 300)
+        console.log(res4);//5
+    </script>
+</body>
+</html>

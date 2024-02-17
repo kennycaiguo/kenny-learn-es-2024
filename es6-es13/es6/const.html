@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>const声明常量</title>
+</head>
+<body>
+<ul>
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+</ul>
+<script>
+    const obj ={
+        name:"kenny",
+        age:45,
+        money:999999999999999999999999999999999.00
+    }
+    // obj = { //obj不能再指向别的对象
+    //     name:"Benny",
+    //     age:45,
+    //     money:0
+    // }
+    // //但是obj的属性可以修改
+    // obj.name = "Kenny guo cai"
+    // console.log(obj)
+    console.log(window.obj)
+</script>
+</body>
+</html>

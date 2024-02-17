@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串和数值扩展</title>
+</head>
+<body>
+<script>
+ //  let myname = "kenny"
+ //  console.log(myname.includes("k"))
+ //  console.log(myname.startsWith("k"))
+ //  console.log(myname.endsWith("y"))
+ //  //有第二个参数的用法
+ //  // console.log(myname.includes("k",1)) //false,表示从索引为1的位置往后看
+ //  // console.log(myname.startsWith("k",1)) //false,表示从索引为1的位置往后看
+ //  // console.log(myname.endsWith("e",2)) //true，和上面不一样，表示从索引为2的位置往前看
+ // //repeat
+ //  console.log(myname.repeat(3)) //kennykennykenny
+ //  console.log(myname.repeat(0)) //空,这个比较特别，repeat0个就是一个都不输出
+ //  console.log(myname.repeat(2.2))//kennykenny，遇到小数会自动截取他的整数部分抛弃小数部分
+ //  console.log(myname.repeat('3'))//kennykennykenny 字符串数字也有效
+ //  console.log(myname.repeat('aaa')) //不会输出，因为这不是有效的数字
+
+  //数字扩展
+ // 1.Number.isFinite() Number.isNaN()
+ // console.log(Number.isFinite(100))   //true
+ // console.log(Number.isFinite(100/0)) //false
+ // console.log(Number.isFinite(Infinity)) //false
+ // console.log(Number.isFinite("50")) //false
+
+ console.log(Number.isNaN(100)) //false
+ console.log(Number.isNaN('100')) //false
+ console.log(Number.isNaN(NaN)) //true
+ console.log(Number.isNaN("hello")) //false
+ console.log(Number.isNaN(100/'a')) //true 是用来判断一个表达式的值是不是数字
+ console.log(Number.isNaN(100*'a')) //true 是用来判断一个表达式的值是不是数字
+ console.log(Number.isNaN(100-'a')) //true 是用来判断一个表达式的值是不是数字
+ console.log(Number.isNaN('b'-'a')) //true 是用来判断一个表达式的值是不是数字
+ console.log(Number.isNaN('100'/2)) //false 是用来判断一个表达式的值是不是数字,会自动把数字字符串转化为数字
+
+
+</script>
+</body>
+</html>

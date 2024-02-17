@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active{
+            background: #ccc;
+            color: deeppink;
+            border: 1px solid green;
+        }
+
+    </style>
+</head>
+<body>
+<ul>
+
+</ul>
+<script>
+     let selected = []
+    function doClick(item) {
+        if(selected.length === 0){
+            item.className = 'active'
+            selected.push(item)
+        } else {
+            selected.forEach(item=>item.className ='')
+            selected = []
+            item.className = 'active'
+            selected.push(item)
+        }
+    }
+    let oul = document.querySelector("ul")
+    let arr = ["Java","cpp","kotlin","python"]
+    let newArr = arr.map(function (item,index) {
+        return `<li onclick="doClick(this)" >
+               <b>${item}</b>
+            </li>`
+    })
+    oul.innerHTML = newArr.join(" ")
+    // arr.forEach(item=>{
+    //     oul.appendChild(document.createElement(item))
+    // })
+</script>
+</body>
+</html>

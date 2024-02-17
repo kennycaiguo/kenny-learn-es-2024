@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成器Generator</title>
+</head>
+<body>
+    <script>
+        //1.封装自己的ajax
+        function myAjax(url) {
+            return new Promise(function(resolve,reject) {
+                let xhr = new XMLHttpRequest()
+                xhr.open("get",url,true)
+                xhr.send()
+                xhr.onreadystatechange = function () {
+                    if(xhr.readyState === 4){
+                        if(xhr.status>=200 && xhr.status<=300){
+                        resolve(xhr.responseText)
+                        } else {
+                            reject(xhr.responseText)
+                        }
+                    }
+                    
+                }
+            })
+        
+        }
+
+     // 生成器
+      function *Gen() {
+        let res = yield myAjax("1.json")
+        console.log("第一次请求结果:",res);
+        let res2 =  yield myAjax("2.json",res)
+        console.log("第二次请求结果:",res2); 
+      }
+
+      let g = Gen()
+    //   console.log(g.next());
+    // g.next().value.then(res=>console.log(res))
+    //   g.next(g.next().value.then(res=>console.log(res)))
+    g.next().value.then(data=>{
+        g.next(data).value.then(res=>{
+            g.next(res)
+        })
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>对象扩展</title>
+</head>
+<body>
+<script>
+  //对象扩展
+  //1.对象简写
+  let name = "My Object"
+  let obj = {
+      name:name,
+      test1:function () {
+          console.log("inside function1")
+      },
+      test2:function () {
+          console.log("inside function2")
+      }
+  }
+// //简写
+  let obj2 = {
+      name,
+      test1(){
+          console.log("inside function1")
+      },
+      test2(){
+          console.log("inside function2")
+      }
+  }
+//   console.log(obj,obj2)
+
+//2.对象属性表达式，用外面的变量来替换对象的key
+  let hername="Name"
+  let obj1 = {
+      [hername]:"Jackline" //会变为 Name:"Jackline",也就是在对象里面，可以使用[]来获取外面变量的值作为对象的key
+  }
+  console.log(obj1); //{Name: 'Jackline'}
+//3.对象扩展运算符...
+  let o1 = {
+      name:"Betty",
+      gender:"Female",
+      age:18
+  }
+  let o2 = {
+      ...o1, //把o1的属性一个一个拆开然后作为o2对象的属性，下面是o2对象的特有属性
+      email:"betty1234@hotmail.com",
+      address:"3 orange street,downtown"
+  }
+  console.log(o2)
+  //...也可以用来合并对象
+  let oj1= {
+      name:"Brandy",
+      gender:"Female",
+      age:19
+  }
+  let oj2 = {
+      email:"Brandysexy@hotmail.com",
+      address:"5 orange street,downtown"
+  }
+  // let oj = {...oj1,...oj2}
+  let oj = Object.assign({},oj1,oj2)
+  console.log(oj)
+  console.log(NaN == NaN) //false
+  console.log(NaN === NaN) //false
+  console.log(Object.is(NaN, NaN)); //true
+  console.log(Object.is(parseInt("ken"), NaN)); //true,不能将字母字符串转化为数字，他一定是NaN
+
+</script>
+</body>
+</html>

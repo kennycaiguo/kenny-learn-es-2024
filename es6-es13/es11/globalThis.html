@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es11特性-globalThis</title>
+</head>
+<body>
+    <script>
+        let getGlobal = function () {
+            if(typeof self!=="undefined"){return self}
+            else if (typeof window !=="undefined"){return window}
+            else if (typeof global!=="undefined") {return global}
+        }
+        console.log(getGlobal());// Window
+        console.log("globalThis:",globalThis); //在这里其实就是Window对象
+    </script>
+    
+</body>
+</html>

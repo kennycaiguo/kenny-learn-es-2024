@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6中的module语法2</title>
+</head>
+<body>
+    <div>hello js</div>
+    <script type="module">
+        //第二种导入js方法 
+        // import {func1,func2,test as test1} from './1-2.js'
+        import * as obj from './1-2.js'
+        import {fun1,test} from './2-2.js'
+        // import {info} from './4.js'  //导入使用export导出的函数
+        // import my from './4.js' //导入使用export default导出的函数
+        import my,{info} from './4.js'
+        obj.func1()
+        obj.test()
+        fun1()
+        test()
+        console.log("=================");
+       info()
+       my()
+    </script>
+</body>
+</html>

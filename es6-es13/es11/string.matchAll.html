@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es11特性-String.prototype.matchAll</title>
+</head>
+<body>
+    
+    <script>
+        let str = `
+        <ul>
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+            <li>444</li>
+        </ul>`
+        //以前的做法
+        let reg = /<li>(.*)<\/li>/g
+        console.log("match的结果:");
+        console.log(str.match(reg));     //['<li>111</li>', '<li>222</li>', '<li>333</li>', '<li>444</li>']
+        console.log("matchAll方法的结果:");
+        //str.matchAll方法
+        let it = str.matchAll(reg)
+        // console.log(it);
+        //使用for..of遍历
+        // for (let i of it){
+        //     console.log(i);
+        // }
+        console.log([...it]); //可迭代对象展开变为数组
+
+    </script>
+</body>
+</html>

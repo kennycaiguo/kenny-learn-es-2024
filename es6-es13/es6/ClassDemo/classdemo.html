@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6中的Class语法</title>
+</head>
+<body>
+    <script>
+        //1.基本用法
+        class Person{
+            constructor(name,gender,age){ //js的类需要一个构造函数
+                this.name = name,
+                this.age = age,
+                this.gender = gender
+            }
+            Hello(){ //类里面的成员函数不需要以function开头
+                console.log(`hi,my name is ${this.name},i am a ${this.gender},and i am ${this.age} years old`);
+            }
+
+        }
+
+        let p = new Person("Jackline","female",25)
+        // p.Hello()
+        //2.添加静态方法
+        class Person2{
+            constructor(name,gender,age){ //js的类需要一个构造函数
+                this.name = name,
+                this.age = age,
+                this.gender = gender
+            }
+            static stName=" " //静态属性
+            Hello(){ //类里面的成员函数不需要以function开头
+                console.log(`hi,my name is ${this.name},i am a ${this.gender},and i am ${this.age} years old`);
+            }
+            static makeFriend(myname){ //静态
+                this.stName = myname
+                console.log(`hi,my name is ${this.stName},what is your name`)
+            }
+        }
+        let p2 = new Person2("BenQ","male",25)
+        // p2.makeFriend() //js中类的实例不能调用类的静态方法
+        Person2.makeFriend("Brandy")
+        // console.log(p2.stName); //js中类的实例不能访问类的静态属性
+        console.log(p2); //js中的类默认实现了toString方法
+
+        //3.继承
+        class SubPerson extends Person2{
+            // Hello(){ //重写方法
+            //     console.log(super.toString());
+            // }
+        }
+        let sp = new SubPerson("Becky","female",18)
+        sp.Hello()
+        
+    </script>
+</body>
+</html>

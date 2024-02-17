@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es12新特性4-WeakRefs</title>
+</head>
+<body>
+    <script>
+        let obj1 = {
+            name:"Jack"
+        }
+        // let obj2 = {
+        //     name:"Jackline"
+        // }
+
+        // let ws = new WeakSet([obj1,obj2])
+        // console.log(ws);
+        //  obj2 = null
+        //  console.log(ws);
+        // let wm = new WeakMap()
+        // wm.set(obj1,18)
+        // wm.set(obj2,28) //weakmap的键只能是对象类型的
+        // console.log(wm);
+        // obj1 = null
+        // console.log(wm);
+
+        //弱引用
+        let wobj = new WeakRef(obj1)
+        console.log(wobj);
+        console.log("======将obj1赋值为空后=======");
+        obj1=null
+        console.log(wobj);
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6的生成器函数Generator</title>
+</head>
+<body>
+    <script>
+        //简单用法
+        function *Gen() {
+            console.log("first");
+            yield
+            console.log('second');
+            yield
+            console.log("third");
+           
+        }
+        let gen = Gen()
+        // gen.next()
+        // gen.next()
+        // gen.next()
+        // gen.next()
+        console.log(gen.next()); //{value: undefined, done: false} 因为上面的yield后面没有参数，所以是undefined
+        console.log(gen.next()); //{value: undefined, done: false} 因为上面的yield后面没有参数，所以是undefined
+        console.log(gen.next()); //{value: undefined, done: false} 因为上面的yield后面没有参数，所以是undefined
+
+        console.log("================================");
+
+        //yield后面可以跟参数
+        function* func(){
+            // console.log("one");
+            yield '1'; //会返回一个对象有一个value属性和一个done属性
+            // console.log("two");
+            yield '2'; 
+            // console.log("three");
+            return '3';
+        }
+        
+        let f = func()
+        // f.next()
+        // f.next()
+        // f.next()
+        // console.log(f.next()); //{value: '1', done: false}
+        // console.log(f.next()); //{value: '2', done: false}
+        // console.log(f.next()); //{value: '3', done: false} 
+        // console.log(f.next()); //{value: undefined, done: true}
+        // for(let f of func()){
+        //     console.log(f);
+        // }
+
+        //next()方法里面可以接收参数，然后他是传递给yield的
+         function *GenFun() {
+            let ret1 = yield "123"
+            console.log("inside myGen",ret1);
+            let ret2 = yield "456"
+            console.log("inside myGen",ret2);
+        }
+        let myGen = GenFun()
+        let res1 = myGen.next("hello")
+        console.log(res1);
+        let res2 = myGen.next("world")
+        console.log(res2);
+        let res3=myGen.next("girls")
+        console.log(res3);
+    </script>
+</body>
+</html>

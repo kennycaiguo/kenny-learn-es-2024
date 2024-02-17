@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解构表达式</title>
+</head>
+<body>
+<script>
+  let obj = {
+      name:"Jimmy",
+      age:18,
+      gender:'Male',
+      email:"Jimmy123@gmail.com"
+  }
+
+  // //解构表达式
+  // let {email,age,gender,name} = obj
+  // let {email} = obj
+  let {age} = obj
+  let {gender:sex} = obj
+  let {phone="没有该属性"} = obj
+  // let {name,age,gender,email} = obj ////注意：js的对象解构表达式用{}，数组的解构用[]，kotlin的解构表达式用()
+  // console.log(name)
+  // console.log(age)
+  // console.log(gender)
+  console.log(age,sex,phone)
+
+  // //用数组来存储对象的属性值
+  // let arr = []
+  // for(key in obj){
+  //     arr.push(obj[key])
+  // }
+  // console.log(arr)
+  // //方式2
+  // let arr2 = []
+  // for(let key in obj){
+  //     let obj2={}
+  //     obj2[key] = obj[key]
+  //     arr2.push(obj2)
+  // }
+  // console.log(arr2)
+
+  // let objs = [
+  //     {
+  //         name:"Timmy",
+  //         age:18,
+  //     },
+  //     {
+  //         name:"Gimmy",
+  //         age:19,
+  //     },
+  //     {
+  //         name:"Jammy",
+  //         age:17,
+  //     }
+  // ]
+  // let [o1,o2,o3] = objs
+  // console.log(o1)
+  // console.log(o2)
+  // console.log(o3)
+
+  // //利用解构表达式来交换两个变量的值，需要分号
+  // let a = 10;
+  // let b = 20; //需要分号，不然报错
+  // console.log(a,b);//需要分号，不然报错
+  //
+  // [b,a] = [a,b];//需要分号，不然报错
+  //
+  // console.log(a,b)
+
+  // //只想用解构表达式获取一个值,不需要的直接留空，但是逗号不能少
+  // let nums = [50,60,100]
+  // let [,,a] = nums
+  // console.log(a)
+//嵌套数组的解构
+//   let myarr=[1,[11,22,33],2]
+//   let [a,[x,y,z],b] = myarr
+//   console.log(x)
+
+  let name1 = "Kenny"
+  // let {length} = name1
+  // console.log(length)
+  let {length:len} = name1
+  console.log(len)
+</script>
+</body>
+</html>

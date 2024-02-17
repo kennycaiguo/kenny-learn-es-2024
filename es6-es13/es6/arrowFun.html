@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>箭头函数的this</title>
+</head>
+<body>
+模糊搜索：
+<input type="text" id="search">
+<script>
+ let searchInput = document.querySelector("#search")
+ // console.log(searchInput)
+ searchInput.oninput = function() {
+     // console.log(this.value)
+     // let _this = this //把input对象保存起来
+     // setTimeout(function() {
+     //     console.log(`发送${_this.value}到后端，获取数据列表`)
+     // },1000)
+     //用箭头函数
+     setTimeout(() =>{
+         console.log(`发送${this.value}到后端，获取数据列表`)
+     },1000)
+
+ }
+</script>
+</body>
+</html>

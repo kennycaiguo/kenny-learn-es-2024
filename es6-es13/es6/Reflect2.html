@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let obj ={}
+
+        // obj.name="Mary" //用这种方法定义的属性可以删除
+        // obj.age=30
+        // Reflect.defineProperty(obj,"name",{value:"jack"})
+        // Reflect.defineProperty(obj,"age",{value:30}) //用这种方法定义的属性无法删除
+        Reflect.deleteProperty(obj,"age")
+        console.log(obj);
+        // let obj2 ={name:"Betty",age:36,gender:"female"} //字面量属性可以删除
+        // Reflect.deleteProperty(obj2,"gender")
+        // console.log(obj2);
+        //用Reflect的set方法来设置对象的属性
+        // let obj3 ={}
+        // Reflect.set(obj3,"name","kenny") //用这种方法设置的属性也可以删除
+        // Reflect.set(obj3,"age",1000)
+        // console.log(obj3);
+        // Reflect.deleteProperty(obj3,"name")
+        // console.log(obj3);
+        //Reflect+Proxy拦截数组
+        let arr = [1,2,4]
+        let arrProxy = new Proxy(arr,{
+            get(){
+              console.log("get called....");
+              return Reflect.get(...arguments)
+            },
+            set(target,key,value){
+                console.log("set called...");
+              return Reflect.set(...arguments)
+            }
+        })
+    </script>
+</body>
+</html>

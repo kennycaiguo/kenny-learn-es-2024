@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es8字符串填充</title>
+</head>
+<body>
+    <script>
+        let str = "king"
+        //注意，前面的数字是填充后的字符串的长度，实际填充整个数字减去原来字符串的长度
+        console.log(str.padStart(15,"*"));//***********king
+        console.log(str.padEnd(15,"+")); //king+++++++++++
+        
+    </script>
+</body>
+</html>

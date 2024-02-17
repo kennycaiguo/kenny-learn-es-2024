@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6的map</title>
+</head>
+<body>
+    <script>
+        //1.Map的创建
+        //方法1，创建空map对象然后用set来设置键和值
+        // let map = new Map()
+        // map.set("name","Kenny")
+        // map.set("position","Boss")
+        // map.set("money",99999999999999.99)
+        // console.log(map); //Map(3) {'name' => 'Kenny', 'position' => 'Boss', 'money' => 99999999999999.98}
+        //方法2，用二维数组来构造map
+        // let map1 = new Map([["name","Jade"],["gender","female"],["age",20]])
+        // console.log(map1); //Map(3) {'name' => 'Jade', 'gender' => 'female', 'age' => 20}
+        //方法3，使用set创建
+        let map2 = new Map(new Set([["code",100],["result",'ok'],['method','get']]))
+        // console.log(map2);
+
+        //2.元素操作
+        //1)设置值，用set
+        map2.set("site","google.com")
+        // console.log(map2);
+        //2.获取值，用get
+        // console.log(map2.get('site')); //google.com
+        //3.删除元素，使用delete方法
+        map2.delete("site")
+        // console.log(map2);//Map(3) {'code' => 100, 'result' => 'ok', 'method' => 'get'}
+        //4.判断是否包含某个key，用has方法
+        // console.log(map2.has('site')); //false,因为这个key已经被删除
+        //5.清空map，使用clear方法
+        map2.clear()
+        console.log(map2); //Map(0) {size: 0}
+        //3.map的遍历
+        let map3 =  new Map(new Set([["code",100],["result",'ok'],['method','get'],['site','facebook.com']]))
+        // console.log(map3['site']);
+        //1.for..of直接遍历，返回一个个的数组，数组第一个值是key，第二个值是value
+        // for (const i of map3) {
+        //     console.log(i);
+        // }
+        //2.遍历keys
+        for(let k of map3.keys()){
+            // console.log(k); //返回所有的key
+        }
+        //3.values得到所有的值
+        for(let v of map3.values()){
+            // console.log(v);
+        }
+        //4.entries()方法
+        for(let e of map3.entries()){
+            // console.log(e);
+        }
+        //5.forEach方法，注意获取到的第一个是value，第二个才是key
+        map3.forEach((value,key)=>console.log(value,key))
+     
+
+    </script>
+</body>
+</html>

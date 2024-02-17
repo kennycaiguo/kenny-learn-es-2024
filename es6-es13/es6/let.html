@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let声明变量</title>
+</head>
+<body>
+<ul>
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+</ul>
+<script>
+    // {
+    //     // var x = 100
+    //     let x = 100
+    // }
+    // alert(x)
+
+    // var lis = document.querySelectorAll("li")
+    // for(var i=0;i<lis.length;i++){
+    //     lis[i].index = i
+    //     lis[i].onclick = function () {
+    //         console.log( this.index)
+    //     }
+    // }
+
+    var lis = document.querySelectorAll("li")
+    for(var i=0;i<lis.length;i++){
+        lis[i].onclick = function () {
+            console.log(i)
+        }
+    }
+
+    // var hername="mary"
+    // console.log(window.hername)
+   // let hername="mary"
+   //  console.log(window.hername)
+
+</script>
+</body>
+</html>

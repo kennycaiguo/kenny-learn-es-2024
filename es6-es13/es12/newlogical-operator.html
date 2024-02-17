@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es12新特性1-新增逻辑操作符</title>
+</head>
+<body>
+    <script>
+        //逻辑赋值操作符 ??=,&&= ,||=
+        // let a=0,b=5
+        // a &&=b
+    //    console.log("a的新值:",a);//0
+        // a ||=b
+        // console.log("a的新值:",a) //5
+        // a ??=5
+        // console.log("a的新值:",a);//0
+
+        let c=null,d=10
+        //  c &&=d
+        //  console.log("c的新值:",c);//null
+        //   c ||=d
+        //   console.log("c的新值:",c) //10
+             c??=d
+             console.log("c的新值:",c) //10
+    </script>
+</body>
+</html>

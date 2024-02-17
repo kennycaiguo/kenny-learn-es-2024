@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6的Proxy对象</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+      //1.Proxy原理
+      // let obj={}
+      // Object.defineProperty(obj,"data",{
+      //   get(){
+      //     console.log("获取data属性");
+      //     return box.innerHTML
+      //   },
+      //   set(value){
+      //     console.log("设置data属性",value);
+      //     box.innerHTML=value
+      //   }
+      // })
+      // obj.data="hello"
+      // console.log(obj.data);
+      //2.Proxy基本使用
+      let obj={}
+      let proxy = new Proxy(obj,{
+        get(target,key){
+            console.log(`getting value of ${key} `);
+            return target[key]
+        },
+        set(target,key,value){
+            console.log(`setting ${value} to ${key}`);
+            //修改dom
+            if(key === 'data'){
+              box.innerHTML = value
+            }
+            target[key] = value
+        }
+      })
+
+     //proxy拦截Set和Map
+     
+
+    </script>
+</body>
+</html>

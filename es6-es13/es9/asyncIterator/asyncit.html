@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es9新特性3-异步迭代</title>
+</head>
+<body>
+    <script>
+        //1.异步迭代器
+        const createAsyncIterator = items=>{
+            let keys = Object.keys(items) //获取所有key的集合
+            let len = keys.length //获取集合的大小用来设置结束标记
+            let pointer = 0 //游标 ，用它和len的比较来迭代结束标记
+            return {
+                next(){
+                    let done = pointer >= len
+                    let value = !done? items[keys[pointer++]] : undefined //注意里面是嵌套的：items[keys[pointer++]]
+                    return Promise.resolve({
+                        value,
+                        done
+                    })
+                }
+            }    
+        }
+        let it = createAsyncIterator([1,2,3])
+        // it.next().then(res=>console.log(res))
+        it.next().then(({value,done})=>console.log(value,done)) //可以使用解构表达式
+        it.next().then(({value,done})=>console.log(value,done)) //可以使用解构表达式
+        it.next().then(({value,done})=>console.log(value,done)) //可以使用解构表达式
+        it.next().then(({value,done})=>console.log(value,done)) //可以使用解构表达式
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es9新特性-for await...of</title>
+</head>
+<body>
+    <script>
+        //for await ... of需要配合异步生成器来用，否则没有我们需要的效果，这个需要注意
+        function timer(t){
+            return new Promise((resolve)=>{
+                setTimeout(()=>{
+                     resolve("data="+t)
+                },t)
+            })
+        }
+
+        //异步生成器
+        async function *gen(){
+            yield await timer(1000)
+            yield await timer(2000)
+            yield await timer(3000)
+        }
+    async function doAsync() {
+        
+        let g= gen()
+        let arr = [g.next(),g.next(),g.next()]
+        for await (let i of arr){
+          console.log("start",Date.now());  
+          console.log(i);
+          console.log("end",Date.now());  
+        }
+    }    
+
+    doAsync()
+    </script>
+</body>
+</html>

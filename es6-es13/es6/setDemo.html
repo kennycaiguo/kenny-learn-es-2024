@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Es中的Set数据类型</title>
+</head>
+<body>
+    <script>
+        //1.set的创建,可以用数组来创建，注意：set没有重复元素，用一个有重复元素的数组创建的set会自动去除重复元素
+        // let arr = [1,2,3,3,4,4,5]
+        // let set1 = new Set(arr)
+        // console.log(set1); //Set(5) {1, 2, 3, 4, 5}
+        // let set2 = new Set(3,4,5,6) //错误：不能直接给Set构造函数传递几个数字来创建set需要传递一个可迭代对象
+        // console.log(set2);
+        // 函数的参数列表也可以转换为set
+        // function testSet() {
+        //     let set = new Set(arguments)
+        //     console.log(set);//Set(3) {10, 20, 30}
+        // }
+        // testSet(10,20,30)
+        //set.增删查清
+        // let mySet = new Set([10,20,40,50])
+        // //1.新增,可以链式调用
+        // mySet.add(30).add(60)
+        // // console.log(mySet); //Set(6) {10, 20, 40, 50, 30,60} set是无序的
+        // //2.检查一个元素是否在set里面,使用set.has(元素) 
+        // // console.log(mySet.has(70));//false
+        // //3.删除，使用delete方法,返回是否删除成功的bool值
+        // // console.log(mySet.delete(60),mySet); //true Set(6) {10, 20, 40, 50, 30}
+        // //清空set使用clear方法
+        // mySet.clear()
+        // console.log(mySet);  //Set(0) {size: 0}
+
+        //set的遍历
+        let mySet =new Set([20,3,4,5,6])
+        // console.log(mySet.keys());
+        // for (let i in mySet) { //set不能使用for..in循环，因为他没有索引
+        //     console.log(i);
+        // }
+        // // 遍历1，for..of直接遍历
+        // for (const i of mySet) {
+        //     console.log(i); //set对象可以直接用for...of遍历
+        // }
+
+        // // 遍历2，for..of遍历keys()
+        // for (const i of mySet.keys()) {
+        //     console.log(i); //set对象可以用for...of遍历 
+        // }
+
+        // // 遍历3，for..of遍历values()
+        // for (const i of mySet.values()) {
+        //     console.log(i);
+        // }
+       //遍历4.for..of遍历entries(),每一个entry其实是一个数组第一个元素是key，第二个元素是value
+    //    for(let e of mySet.entries()){
+    //      console.log(e[0],e[1]);
+    //    }
+       //遍历5 forEach方法
+    //    mySet.forEach(item=>console.log(item))
+
+    //    let strSet = new Set(["ben","ben","ken","jade","jade"])
+    //    console.log(strSet); //Set(3) {'ben', 'ken', 'jade'}
+    //    strSet.forEach((index,item)=>console.log(index,item))
+        //从二维数组创建set，会有很奇怪的key
+        let set1 = new Set([["name","Mark"],["gender","Male"],["age",18]])
+        console.log(set1); 
+        set1.forEach((k,v)=>console.log(`${k}:${v}`))
+         //复杂数组去重
+      let arr = [1,2,2,"kerwin","kerwin",[1,2],[3,4],[1,2],{name:"kerwin"},{name:"kerwin"},{age:100}]
+      //直接操作是非常麻烦的，我们可以先把他们转换为json字符串，然后进行比较
+
+      function makeUnique(array) {
+        let res = new Set()
+        return array.filter(item=>{
+             let id = JSON.stringify(item)
+             if(res.has(id)){
+                return false
+             } else{
+                res.add(id) //因为res开始是空，所以如果没有值需要添加值，这样子才能使用他的去重功能
+                return true
+             }
+        })
+      }
+      console.log(makeUnique(arr));
+    </script>
+</body>
+</html>

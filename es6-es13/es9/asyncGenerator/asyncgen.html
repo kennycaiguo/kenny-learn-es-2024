@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es9新特性-异步生成器</title>
+</head>
+<body>
+    <script>
+        //异步生成器
+        async function *Gen() {
+            yield await Promise.resolve("data1")
+            yield await Promise.resolve("data2")
+            yield await Promise.resolve("data3")   
+        }
+
+        let asyncIt = Gen()
+        async function traval() {
+            for await (let a of asyncIt){
+                console.log(a);
+            }
+        }
+        
+        traval()
+
+    </script>
+</body>
+</html>

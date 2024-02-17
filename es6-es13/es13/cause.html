@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es13特性-error.cause</title>
+</head>
+<body>
+    <script>
+        function getData() {
+            throw new Error("get data error",{cause:"invalid url..."})
+        }
+
+        function test() {
+            try{
+               getData()
+            }catch(e){
+                console.log("错误原因：",e.cause);
+            }
+        }
+        test()
+    </script>
+</body>
+</html>

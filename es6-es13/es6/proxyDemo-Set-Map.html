@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6的Proxy对象拦截set和map</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+     //proxy拦截Set
+      // let set = new Set()
+      // let proxy = new Proxy(set,{
+      //   get(target,key){
+      //       console.log(`getting value of ${key} `);
+      //       //判断如果是方法，修正this指向
+      //       let value = target[key] //先把value取出来
+      //       if (value instanceof Function) {
+      //          return value.bind(target) //将this指向target
+      //       }
+      //       return value //如果是属性就直接返回
+      //   },
+      //   set(target,key,value){
+      //       console.log(`setting ${value} to ${key}`);
+      //       //修改dom
+      //       if(key === 'data'){
+      //         box.innerHTML = value
+      //       }
+      //       target[key] = value
+      //   }
+      // })
+
+    //Proxy拦截Map
+     let map = new Map() //map不能使用对象来构建，因为对象默认是包括迭代的
+     let mapProxy = new Proxy(map,{
+        get(target,key){
+          console.log(`获取${key}的值`);
+          let value = target[key] //先把value取出来
+            if (value instanceof Function) {
+               return value.bind(target) //将this指向target
+            }
+           
+           return value
+        },
+        set(target,key,value){
+            console.log(`把值${value}设置进键${key}里面`);
+            target[key] = value
+        }
+     })
+      
+     mapProxy.set("name","Boss")
+     mapProxy.get("name")
+
+    </script>
+</body>
+</html>

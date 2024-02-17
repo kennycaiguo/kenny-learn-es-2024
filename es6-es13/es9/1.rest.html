@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es9新特性1...</title>
+</head>
+<body>
+    <script>
+        //1.对象的剩余参数
+        let obj = {
+            name:"Jackline",
+            age:33,
+            email:"Jackline123@gmail.com"
+        }
+
+        let {name,...rest} = obj
+        console.log(name);
+        console.log(rest);
+
+        let obj2 = {
+            ...obj,
+            address:"dalian"
+        }
+        console.log(obj2);
+        
+        
+        
+    </script>
+</body>
+</html>

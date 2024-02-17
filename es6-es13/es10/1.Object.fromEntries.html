@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es10新特性1-Object.fromEntries()</title>
+</head>
+<body>
+    <script>
+        //把二维数组转换为一个对象
+        let entries = [["name","kenny"],["gender",'male'],["age",100]]
+        let obj = Object.fromEntries(entries)
+        console.log(obj);
+       //对象转化为map变量
+        let objMap = new Map(Object.entries(obj))
+        console.log(objMap);
+
+         //1.新思路：把map转化为对象
+        // let map = new Map()
+        // map.set("product","iphone")
+        // map.set("model","iphone xs-max")
+        // map.set("price",8000)
+        // let data =map.entries()
+        // let phObj = Object.fromEntries(data)
+        // console.log(phObj)
+        //2.把queryString转化为对象
+        let str = "name=Mary&&age=30"
+        //先把queryString转化为URLSearchParams变量
+        let searchParam = new URLSearchParams(str) //这个URLSearchParams很奇怪，需要用get来获取属性否则看不见
+        // console.log(searchParam);
+        //然后使用Object.fromEntries来变为对象
+        let spObj = Object.fromEntries(searchParam)
+        console.log(spObj);
+
+    </script>
+</body>
+</html>

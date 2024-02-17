@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6迭代器</title>
+</head>
+<body>
+    <ul>
+        <li>王祖贤</li>
+        <li>张曼玉</li>
+        <li>佘诗曼</li>
+    </ul>
+    <script>
+        let arr = ["Java","cpp","Python"]
+        //for...of 和for...in的区别
+        //for..of
+    //    for (const i of arr) {
+    //      console.log(i); //获取到的是每一项的值
+    //    }
+    //for..in
+    // for (const i in arr) {
+    //    console.log(i); //获取到的是元素的索引
+    // }
+    // console.log(arr);
+    console.log(arr[Symbol.iterator]());
+    let iter = arr[Symbol.iterator]()
+    console.log(iter.next().value);
+    console.log(iter.next().value);
+    console.log(iter.next().value);
+     
+    
+    // let obj = {
+    //     name:"Jade",
+    //     age:18,
+    //     [Symbol.iterator]:function(){
+    //         console.log(`hello my name is ${this.name},i am ${this.age} years old`);
+    //     }
+    // }
+    // obj[Symbol.iterator]()
+    //可以给一个对象添加一个迭代器，前提是key是数字，而且必须从零开始逐渐+1
+    let nameObj = {
+        0:"Jackline",
+        1:"Lily",
+        2:"Mike",
+        length:3,
+        [Symbol.iterator]:Array.prototype[Symbol.iterator]
+    }
+
+    // for (let i of nameObj) {
+    //     console.log(i);
+    // }
+
+    //下面的写法不行
+    // let nameObj2 = {
+    //     name:"Jackline",
+    //     gender:'Female',
+    //     age:18,
+    //     length:3,
+    //     [Symbol.iterator]:Array.prototype[Symbol.iterator]
+    // }
+
+    // for (let i of nameObj2) {
+    //     console.log(i);
+    // }
+
+    //对象默认不支持for..of遍历但是对象默认支持for in遍历，获取到的key
+    let nameObj3 = {
+        name:"Jackline",
+        gender:'Female',
+        age:18,
+    
+    }
+
+    for (let i in nameObj3) {
+        console.log(`${i}:${nameObj3[i]}`);   
+    }
+
+    let lis= document.querySelectorAll("li")
+    console.log(lis,[...lis]);
+    </script>
+</body>
+</html>

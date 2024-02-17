@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组扩展</title>
+</head>
+<body>
+<ul>
+    <li>Java</li>
+    <li>Cpp</li>
+    <li>Go</li>
+    <li>Kotlin</li>
+</ul>
+    <script>
+        //数组复制可以使用concat函数，是深拷贝，修改副本不会影响原来的数组
+        let nums = [10,20,30]
+        let nums2 = nums.concat()
+        console.log(nums2)
+        //1.扩展运算符...
+        //1).扩展运算符可以用来复制数组
+        let arr1 = [7,8,9]
+        let arr3 = [...arr1]
+        console.log(arr3)
+        arr3.pop()
+        console.log(arr3)
+        console.log(arr1)
+        // 2),数组扩展符...,可以用来合并数组
+        let arr1 = [1,2,3]
+        let arr2 = [4,5,6]
+        let arr = [...arr1,...arr2] //[1, 2, 3, 4, 5, 6]
+        console.log(arr)
+        //3)...和解构表达式一起使用
+        let myarr = [1,2,3,4,5,6,7,8]
+        let [a,b,c] = myarr
+        console.log(a,b,c) //1,2,3
+        let [x,y,...z] = myarr //把第一个赋值给x,把第二个赋值给y,剩下的全部打包给z，也就是z变为一个数组:他的值是[3,4,5,6,7,8]
+        console.log(x,y,z)
+        //2.Array.from,将类数组对象转换为数组,是Array类的静态方法
+        function test(){
+            console.log(arguments) //arguments和数组有类似的地方可以用下标来获取元素，也可以用for循环遍历但是它没有数组的map，filter等等方法
+           //转换
+            let args = Array.from(arguments)
+            console.log(args); //[1, 2, 3, 5]
+            //然后这个args就是一个数组，可以使用数组的方法如map
+            console.log(args.map(item=>item * 2)) //[2, 4, 6, 10]
+            //调用reduce方法
+            let sum = 0
+            sum = args.reduce((sum,current)=>sum += current,0) //rdeuce方法需要接收返回值
+            console.log("sum=",sum)
+        }
+        test(1,2,3,5)
+
+        let lis = document.querySelectorAll("li")
+        console.log(lis)
+        //转换
+        let arrLis = Array.from(lis);
+        console.log(arrLis)
+        arrLis.map(item=> item.style.color="pink")
+        //3.Array.of,将数值转化为数组,其实就是新建数组,是Array类的静态方法
+        let arrnum = Array.of(1,2,3,4,5)
+        console.log(arrnum); // [1,2,3,4,5]
+        //将前面的lis集合转化为数组
+        // let lisArr = Array.of(...lis) //直接生成一个有4个li是数组，有4个元素的
+        // console.log(lisArr) // [li, li, li, li]
+        let lisArr = Array.of(lis) //这个和上面用...lis是不一样的，上面直接生成一个有4个li是数组，有4个元素的
+        console.log(lisArr) //这里生成的是注意一个NodeList集合作为成员的数组，数组只有一个元素，Nodelist对象有4个孩子，下面我们测试一下
+        console.log(lisArr[0])//NodeList(4)[li, li, li, li]
+        console.log(lisArr[1]) //undefine,声明这个数组的确只有一个集合作为元素
+
+        let texts = ['Java',"javascript","python","golang","kotlin"]
+        let res
+        //4.find ,findindex,是数组的实例对象方法
+         res = texts.find(item=>item.startsWith('j')) //find方法是区分大小写的
+        console.log(res) //javascript
+        res = texts.find(item=>!item.startsWith('j')) //find方法是区分大小写的
+        console.log(res) //Java,find方法只要找到一个就会返回
+        res = texts.findIndex(item=>item.startsWith('j'))
+        console.log(res);//1
+        res = texts.findIndex(item=>!item.startsWith('j'))
+        console.log(res);//0,findIndex方法和find方法类似，只是他返回一个元素的索引
+       //5 findLast,findLastIndex,数组的实例对象方法，从后往前查找,es2022才有，es6没有
+        let num = [11,12,13,14,15]
+        console.log(num.findLast(item=>item > 13)) //15 从后往前，第一个符合条件的是15
+        console.log(num.findLastIndex(item=>item > 13)) //4 第一个符合条件的是下标为4的元素
+        //6.fill
+        let data = Array(3).fill("hello")
+        console.log(data);
+        data.fill("kenny",1,2)
+        console.log(data)
+        ////7.扁平化flat和flatMap
+        let sj = [1,2,3,[4,5,6]]
+        let flatSj = sj.flat()
+        console.log(flatSj);//[1, 2, 3, 4, 5, 6]
+
+        let citiesGroup = [
+            {
+                type:"A",
+                cities:['安庆','安阳','鞍山']
+            },
+            {
+                type:"B",
+                cities: ['北京','包头','保定']
+            }
+
+        ]
+
+        console.log(citiesGroup.flat()) //对于一个复杂的对象数组使用flat方法没有什么效果
+        //像上面的情况，需要使用flatMap方法里面传递一个函数作为参数
+        // res = citiesGroup.flatMap(function (item) {
+        //     return item.cities
+        // })
+        res = citiesGroup.flatMap(item => item.cities)
+        console.log(res) //['安庆', '安阳', '鞍山', '北京', '包头', '保定']
+        //可见flatMap可以把一个对象数组变为一个普通数组
+    </script>
+
+</body>
+</html>

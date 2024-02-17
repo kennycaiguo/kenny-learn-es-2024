@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function testAsync() {
+            return new Promise(function (resolve,reject) {
+                setTimeout(() => {
+                    if(true){
+                        resolve("success...")
+                    } else {
+                        reject("error...")
+                    }
+                }, 2000);
+            })
+        }
+
+        function testAsync2() {
+            return new Promise(function (resolve,reject) {
+                setTimeout(() => {
+                     if(true){
+                    resolve("success2....")
+                    } else {
+                        reject("error2...")
+                    }
+                }, 2000);
+               
+            })
+        }
+
+        async function getAsyncRes(){
+            let res1= await testAsync()
+            console.log(res1);
+            let res2= await testAsync2()
+            console.log(res2);
+        }
+
+        getAsyncRes()
+    </script>
+</body>
+</html>

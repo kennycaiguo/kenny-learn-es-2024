@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数扩展</title>
+</head>
+<body>
+<script>
+  //1.参数默认值
+  function myfun(name="kerwin",age=19) {
+      console.log(`Hello,my name is ${name},i am ${age} years old`) //Hello,my name is kerwin,i am 19 years old
+  }
+  myfun()
+  myfun("Jackline",30) //Hello,my name is Jackline,i am 30 years old
+  //2.函数的剩余参数...打包
+  function argsFun(...args) {
+      console.log(args) //此时args=[1, 2, 3, 4, 5]
+  }
+  argsFun(1,2,3,4,5) //[1, 2, 3, 4, 5],他其实是打包成为一个数组
+  function argsFun2(a,b,...args) { //注意可变参数一定要写最后
+      console.log(args) //此时a=1,b=2,args=[3,4,5]
+  }
+  argsFun2(1,2,3,4,5) //[3, 4, 5]
+  //3.函数的name属性
+  console.log(argsFun2.name) //argsFun2
+  //4.箭头函数
+  let objArr=[
+      {
+          name:"Tracy",
+          age:16,
+          gender:'female'
+      },
+      {
+          name:"Mark",
+          age:18,
+          gender:'male'
+      },
+      {
+          name:"Lily",
+          age:19,
+          gender:'female'
+      },
+      {
+          name:"Tony",
+          age:15,
+          gender:'male'
+      },
+      {
+          name:"Bobby",
+          age:30,
+          gender:'male'
+      },
+  ]
+  let getYoungest = ()=>{
+      let min = objArr[0].age
+      for (let i = 0; i < objArr.length; i++) {
+          if(objArr[i].age < min){
+              min = objArr[i].age
+          }
+      }
+      return objArr.filter(item=>item.age == min)
+  }
+  console.log(getYoungest());
+</script>
+</body>
+</html>

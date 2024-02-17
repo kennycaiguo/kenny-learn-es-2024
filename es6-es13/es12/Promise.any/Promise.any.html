@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es12新特性3-Promise.any</title>
+</head>
+<body>
+    <script>
+        function myAjax(url) {
+        return new Promise(function(resolve,reject) {
+            let xhr = new XMLHttpRequest()
+            xhr.open("get",url,true)
+            xhr.send()
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState === 4){
+                    if(xhr.status>=200 && xhr.status<=300){
+                       resolve(JSON.parse(xhr.responseText))
+                    } else {
+                        reject(xhr.responseText)
+                    }
+                }
+                
+            }
+        })
+        
+    }
+
+    let arr = [myAjax("1.json"),myAjax("2.json"),myAjax("3.json")]
+    // let arr = [myAjax("3.json"),myAjax("1.json"),myAjax("2.json")]
+    // let arr = [myAjax("3.json"),myAjax("2.json"),myAjax("1.json")]
+    // let arr = [myAjax("ok.json"),myAjax("2.json"),myAjax("1.json")]
+    let ret = Promise.any(arr)
+    // console.log(ret);
+    ret.then(data=>console.log(data)) //{data: 1000} 如果你的任务列表中有一个是成功的它可以拿到，如果有多个成功，它也只能拿到任意成功的
+    </script>
+</body>
+</html>

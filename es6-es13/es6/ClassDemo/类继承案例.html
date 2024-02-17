@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>类继承案例</title>
+</head>
+<body>
+    <div class="box1">
+        <h1></h1>
+        <ul></ul>
+    </div>
+    <div class="box2">
+        <h1></h1>
+        <img src="" alt="图片"  width="100px">
+        <ul></ul>
+    </div>
+    <script>
+        let data1 = {
+            title:"体育",
+            list:["体育-1","体育-2","体育-3"]
+        }
+
+        let data2 = {
+            title:"综艺",
+            url:"https://pic.maizuo.com/usr/movie/5011ee407fb407d47e333a3935ec33d1.jpg?x-oss-process=image/quality,Q_70",
+            list:["综艺-1","综艺-2","综艺-3"]
+        }
+
+
+        class CreateBox{
+            constructor(select,data){
+               this.box = document.querySelector(select)
+               this.title = data.title
+               this.list = data.list
+               //初始化完成后马上进行渲染
+               this.render()
+            }
+            render(){
+                let h1 = this.box.querySelector("h1")
+                let ul  = this.box.querySelector("ul")
+                h1.innerHTML = this.title
+                ul.innerHTML = this.list.map(item=>`<li>${item}</li>`).join("")
+            }
+        }
+        new CreateBox(".box1",data1)
+
+        class CreateBox2 extends CreateBox{
+            constructor(select,data){
+                super(select,data)
+                this.url = data.url
+                this.render()
+            }
+
+            render(){
+                super.render()
+                let img = this.box.querySelector("img")
+                img.src = this.url
+            }
+        }
+        new CreateBox2(".box2",data2)
+    </script>
+</body>
+</html>

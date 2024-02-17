@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es12新特性5-FinalizationRegistry</title>
+</head>
+<body>
+    <button id="like">like</button>
+    <script>
+        //1.创建一个registry对象
+       let  registry = new FinalizationRegistry(data=>{
+            console.log(`按钮不在了，被点击了${data}下`);
+       })
+       let like = new WeakRef(document.getElementById("like"))
+       let wmap = new WeakMap()
+       wmap.set(like.deref(),{click:0})
+       like.deref().onclick = function () {
+          wmap.get(like.deref()).click++
+          console.log(wmap.get(like.deref()).click);
+       }
+       setTimeout(() => {
+        //注册监视对象
+        registry.register(like.deref(),wmap.get(like.deref()).click)
+        document.body.removeChild(like.deref())
+       }, 3000);
+    </script>
+</body>
+</html>

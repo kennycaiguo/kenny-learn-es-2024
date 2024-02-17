@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6中的Class语法2</title>
+</head>
+<body>
+    <ul id="list">
+
+    </ul>
+    <script>
+        //拦截类对象的get和set方法
+        class Person{
+            static alias =this.name
+            static str = function () {
+                return `class[${this.name}]`
+            }
+            constructor(name,age,id){
+                this.name = name
+                this.age = age
+                this.ele = document.querySelector(`#${id}`)
+            }
+            //需要被拦截的方法
+            get location(){
+                console.log("get method");
+                // return this.location //还不能直接return,会进入死循环
+               
+            }
+
+            set location(value){
+                console.log("set method:",value);
+                
+            }
+
+            get html(){
+               return this.ele.innerHTML
+            }
+            set html(value){
+               this.ele.innerHTML = value.map(item=>`<li>${item}</li>`).join("")
+            }
+        }
+
+        let p = new Person("Kerby",18,"list")
+        // p.location = "tianjing"
+        // console.log(p.location);
+        p.html=["Jackline","Mark","Linda"]
+        console.log(p.html);
+        console.log("testing static property and methods:");
+        //添加静态方法的另外一种写法
+        // Person.alias="Person class"
+        // Person.str = function () {
+        //     return `class[${this.alias}]`
+        // }
+        console.log("alias:",Person.alias);
+        console.log(Person.str()); //会输出Person类的全部代码
+        console.log("=====================");
+        //类的继承
+        class Student extends Person{
+            constructor(name,age,score){
+                super(name,age)
+                this.score = score
+            }
+
+            showScore(){
+                console.log(`Hi,my name is ${this.name},my score is `);
+            }
+        }
+        console.log(Student.str());
+        console.log(Student.alias);
+    </script>
+</body>
+</html>

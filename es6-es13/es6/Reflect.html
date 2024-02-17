@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6-Reflect</title>
+</head>
+<body>
+    <script>
+        //Reflect可以代替Object的某些方法
+        let obj = {}
+        // Object.defineProperty(obj,"name",{
+        //     value:"Kenny",
+        //     writable:false, //表明改属性是否可以修改，false表示不可修改
+        //     enumerable:false //表明该属性是否可以配置，false表示不可以，此时这个属性不能删除
+        // })
+        Reflect.defineProperty(obj,"name",{
+            value:"Kenny",
+            writable:true, //表明改属性是否可以修改，false表示不可修改
+            enumerable:true //表明该属性是否可以配置，false表示不可以，此时这个属性不能删除
+        })
+
+        let res = Reflect.defineProperty(obj,"gender",{
+            value:"Male"
+            
+        })
+        // console.log(obj);
+        // 老写法
+        console.log("name" in obj); //true
+        //新写法
+        console.log(Reflect.has(obj,"name")); //true
+        //删除属性老写法
+        // delete obj.gender
+        // console.log(obj);
+        Reflect.deleteProperty(obj,"gender")
+        console.log(obj);
+
+    </script>
+</body>
+</html>

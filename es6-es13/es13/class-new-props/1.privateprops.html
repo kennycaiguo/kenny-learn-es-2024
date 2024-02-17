@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es13特性-类私有属性and more</title>
+</head>
+<body>
+    <script>
+        //1.类的使用属性
+        // class Person{
+        // #privacy ={} //私有属性
+        //    get(key){
+        //     return this.#privacy[key]
+        //    }
+        //     set(key,value){
+        //         this.#privacy[key] = value
+        //     }
+        // }
+        // class Person{
+        //    #privacy ={} //私有属性
+        //    get like(){
+        //     return this.#privacy
+        //    }
+        //     set like(value){
+        //         this.#privacy = value
+        //     }
+        // }
+
+        // let p = new Person()
+        // p.like = "fish"
+        // console.log(p.like);
+        // p.like = "watermelon"
+        // console.log(p.like);
+        class Student{
+            #sex = ""
+            #stuNum = ""
+            get gender(){
+                return this.#sex
+            }
+            set gender(sex){
+                this.#sex = sex
+            }
+
+            get id(){
+                return this.#stuNum
+            }
+
+            set id(num){
+                this.#stuNum = num
+            }
+        }
+
+        let s = new Student()
+        s.gender="female"
+        s.id="#506-ik301-66xxx"
+        console.log(s.gender,s.id);
+     //2.可以在构造函数外面定义属性
+     //3.静态代码块，可以用来初始化静态属性
+
+     class Mother{
+          static stname = ""
+          static stAge = 0
+          static{
+            this.stname = "Jenner"
+            this.stAge = 30
+          }
+     }
+     console.log( Mother.stname,Mother.stAge); //Jenner 30
+    </script>
+    
+    
+
+</body>
+</html>

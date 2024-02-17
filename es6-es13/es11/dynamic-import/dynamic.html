@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es11动态导入特性</title>
+</head>
+<body>
+    <button id="login">登录</button>
+    <script type="module">
+       
+      function adminlogin() {
+        return "管理员"
+      }
+
+      function userlogin() {
+         return "用户"
+      }
+
+    async function render(role) {
+        if(role ==="管理员" ){
+          let res1 = await import('./1.js') //这个import函数的返回值是一个Promise,最好配合async await来使用
+          console.log(res1.default.name);
+        } else if(role ==="用户" ){
+           let res2 =await import('./2.js')
+           console.log(res2.default.name);
+           
+        }
+     } 
+
+     //按钮点击事件处理
+     let btn = document.querySelector('#login')
+     btn.onclick = () =>{
+        //   let role = adminlogin()
+        //   console.log(role);
+        //   render(role)
+          let role1 = userlogin()
+          console.log(role1);
+          render(role1)
+     }
+
+     
+    </script>
+</body>
+</html>

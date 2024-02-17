@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es11-new feature-Promise.allSettled</title>
+</head>
+<body>
+    <script>
+        //Promise.allSettled
+        //1.封装自己的ajax
+        function myAjax(url) {
+            return new Promise(function(resolve,reject) {
+                let xhr = new XMLHttpRequest()
+                xhr.open("get",url,true)
+                xhr.send()
+                xhr.onreadystatechange = function () {
+                    if(xhr.readyState === 4){
+                        if(xhr.status>=200 && xhr.status<=300){
+                        resolve(JSON.parse(xhr.responseText))
+                        } else {
+                            reject(xhr.responseText)
+                        }
+                    }
+                    
+                }
+            })
+        
+        }
+   let arr = [myAjax("./1.json"),myAjax("./4.json")]
+//    Promise.allSettled(arr).then(res=>console.log(res)) //这个方法会执行使用Promise，不管是否执行成功，都会拿到结果
+   //这个方法返回一个数组，我们来根据数组元素的status属性来过滤
+    Promise.allSettled(arr).then(res=>{
+    //    let ret1 = res.filter(item=>item.status=="fulfilled") 
+    //    console.log(ret1);
+       let ret2 = res.filter(item=>item.status=="rejected") 
+       console.log(ret2);
+    }) 
+
+    </script>
+</body>
+</html>

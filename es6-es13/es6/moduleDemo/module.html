@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6中的module语法</title>
+    <!-- <script src="./1.js"></script>
+    <script src="./2.js"></script> -->
+    <!-- <script src="./1.js" type="module"></script> -->
+</head>
+<body>
+    <div>hello</div>
+    <script type="module">
+        
+        import obj from "./1.js"
+        import obj2 from "./2.js"
+        import timport from './3.js'
+        
+        //模块化
+        /*
+            异步加载
+            私密不漏
+            重名不怕
+            依赖不乱
+        */
+    //    test()
+       obj.func1()
+       obj2.test()
+       timport()
+    </script>
+</body>
+</html>
